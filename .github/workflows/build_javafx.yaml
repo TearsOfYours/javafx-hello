@@ -35,11 +35,11 @@ jobs:
 
       - name: Construir ejecutable
         run: jpackage --input build \
-            --name HelloWorldFx \
-            --main-jar HelloWorldFx.jar \
-            --main-class dam.optativa.HelloWorldFx \
-            --type deb \
-            --module-path path_to_javafx_lib --add-modules javafx.controls
+          --name HelloWorldFx \
+          --main-jar HelloWorldFx.jar \
+          --main-class dam.optativa.HelloWorldFx \
+          --type deb \
+          --module-path path_to_javafx_lib --add-modules javafx.controls
 
       #- name: Ejecutar tests con Gradle
       #  run: ./gradlew test
