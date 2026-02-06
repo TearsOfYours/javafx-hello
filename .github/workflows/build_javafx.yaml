@@ -34,7 +34,12 @@ jobs:
           jar --create --file=build/HelloWorldFx.jar --manifest=javafx-hello-todo/manifest/MANIFEST.MF -C build .
 
       - name: Construir ejecutable
-        run: jpackage --input build/ HelloWorldFx HelloWorldFx.jar dam.optativa.HelloWorldFx deb path_to_javafx_lib javafx.controls
+        run: jpackage --input build/ \
+            --name HelloWorldFx \
+            --main-jar HelloWorldFx.jar \
+            --main-class dam.optativa.HelloWorldFx \
+            --type deb \
+            --module-path path_to_javafx_lib --add-modules javafx.controls
 
       #- name: Ejecutar tests con Gradle
       #  run: ./gradlew test
