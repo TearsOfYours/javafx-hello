@@ -2,11 +2,11 @@ name: Java FX Hello World
 
 on:
   push:
-    branches:
-      - "**"
-  pull_request:
-    branches:
-      - "**"
+    tags:
+      - "v*" 
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -38,6 +38,18 @@ jobs:
 
       - name: Construir ejecutable
         run: jpackage --input build --name HelloWorldFx --main-jar HelloWorldFx.jar --main-class dam.optativa.HelloWorldFx --type deb --module-path javafx-sdk-21.0.10/lib --add-modules javafx.controls
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: HelloWorldFx-Executable
+          path: HelloWorldFx.deb
+
+      - name: Release
+        use: actions/action-gh-release@v2
+        if: github.ref_type=='tag'
+        with: 
+          files: "*.deb"
 
       #- name: Ejecutar tests con Gradle
       #  run: ./gradlew test
