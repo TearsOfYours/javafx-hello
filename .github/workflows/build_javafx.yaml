@@ -16,20 +16,19 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Instalar Java 17
+      - name: Instalar Java 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Descargar / Instalar dependencias
-        run: 
+        run: |
           wget https://download2.gluonhq.com/openjfx/21.0.10/openjfx-21.0.10_linux-x64_bin-sdk.zip
-          unzip openjfx-21.0.10_linux-x64_bin-sdk.zip -d javafx-sdk
-          javac --module-path ../javafx-sdk/javafx-sdk-21.0.10/lib --add-modules javafx.controls -d build/ src/dam/optativa/HelloWorldFx.java
-          jar --create --file=build/HelloWorldFx.jar --manifest=manifest/MANIFEST.MF -C build/ .
-          java --module-path ../javafx-sdk/javafx-sdk-21.0.10/lib --add-modules javafx.controls -jar build/HelloWorldFx.jar
-
+          unzip openjfx-21.0.10_linux-x64_bin-sdk.zip
+          mkdir -p build
+          javac --module-path javafx-sdk-21.0.10/lib --add-modules javafx.controls -d build src/dam/optativa/HelloWorldFx.java
+          jar --create --file=build/HelloWorldFx.jar --manifest=manifest/MANIFEST.MF -C build .
 
       - name: Ejecutar tests con Gradle
         run: ./gradlew test
