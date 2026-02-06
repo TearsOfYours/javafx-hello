@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: HelloWorldFx-Executable
-          path: HelloWorldFx.deb
+          path: helloworldfx_1.0-1_amd64.deb
 
       - name: Path del directorio
         run: ls
