@@ -34,7 +34,7 @@ jobs:
           jar --create --file=build/HelloWorldFx.jar --manifest=javafx-hello-todo/manifest/MANIFEST.MF -C build .
 
       - name: Construir ejecutable
-        run: jpackage --input build/ \
+        run: jpackage --input build \
             --name HelloWorldFx \
             --main-jar HelloWorldFx.jar \
             --main-class dam.optativa.HelloWorldFx \
